@@ -1,6 +1,7 @@
 # Todo list app
 A todo list app
 
+Link for the app : https://praduman2714.github.io/TodoList/
 
 ### General steps to follow when creating a project
 
