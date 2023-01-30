@@ -3,6 +3,7 @@ let tasks = [];
 const tasksList = document.getElementById("list");
 const addTaskInput = document.getElementById("add");
 const taskCounter = document.getElementById("tasks-counter");
+const deleteAllMarked = document.getElementById("completeAll");
 
 
 function addToDom(task){
@@ -10,6 +11,7 @@ function addToDom(task){
     li.innerHTML = `
         <input type="checkbox" id="${task.id}" ${task.completed ? 'checked' : ''} class="custom-checkbox">
         <label for="${task.id}">${task.text}</label>
+        
         <img src="dele.png" class="delete" data-id="${task.id}" />
     `;
 
@@ -40,7 +42,7 @@ function toggleTasks(taskId){
     for(let i = 0; i<tasks.length; i++){
         if(tasks[i].id === taskId){
             tasks[i].completed = !tasks[i].completed;
-            showNotification("Tasks Toggled");
+            // showNotification("Tasks Toggled");
         }
     }
 }
@@ -51,7 +53,7 @@ function deleteTasks(taskID){
     })
     tasks = newTask;
     renderList();
-    showNotification("Task deleted");
+    // showNotification("Task deleted");
 }
 
 function showNotification(task){
@@ -93,5 +95,15 @@ function handleClickListner(event){
     }
 }
 
+function deleteAllCompleted(){
+    for(let i = 0; i<tasks.length ; i++){
+        if(tasks[i].completed === true){
+            deleteTasks(tasks[i].id);
+            deleteAllCompleted();
+        }
+    }
+}
+
 addTaskInput.addEventListener('keyup', handleInput);
 document.addEventListener('click', handleClickListner);
+deleteAllMarked.addEventListener('click', deleteAllCompleted);
