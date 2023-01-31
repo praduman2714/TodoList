@@ -3,7 +3,11 @@ let tasks = [];
 const tasksList = document.getElementById("list");
 const addTaskInput = document.getElementById("add");
 const taskCounter = document.getElementById("tasks-counter");
+// These provide the functionality to the buttons
 const deleteAllMarked = document.getElementById("completeAll");
+const dispalyAll = document.getElementById("All");
+const displayComplete = document.getElementById("completed");
+const displayActive = document.getElementById("active"); 
 
 
 function addToDom(task){
@@ -104,6 +108,40 @@ function deleteAllCompleted(){
     }
 }
 
+function handleDisplayComplete(){
+    let c = 0;
+    tasksList.innerHTML = "";
+    // console.log("clicked");
+    for(let i = 0; i<tasks.length ; i++){
+        // addToDom(tasks[i]);
+        if(tasks[i].completed == true){
+            addToDom(tasks[i]);
+            c++;
+        }
+
+    }
+    taskCounter.innerHTML = c;
+}
+
+function handleDisplayActive(){
+    let c = 0;
+    tasksList.innerHTML = "";
+    // console.log("clicked");
+    for(let i = 0; i<tasks.length ; i++){
+        // addToDom(tasks[i]);
+        if(tasks[i].completed == false){
+            addToDom(tasks[i]);
+            c++;
+        }
+
+    }
+    taskCounter.innerHTML = c;
+}
+
 addTaskInput.addEventListener('keyup', handleInput);
 document.addEventListener('click', handleClickListner);
 deleteAllMarked.addEventListener('click', deleteAllCompleted);
+
+dispalyAll.addEventListener('click' , renderList);
+displayComplete.addEventListener('click', handleDisplayComplete);
+displayActive.addEventListener('click', handleDisplayActive);

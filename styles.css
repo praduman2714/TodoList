@@ -121,10 +121,17 @@ h1 {
   color: black;
 }
 
-#completeAll{
+#completeAll, #All, #completed, #active{
   margin-bottom: 20px;
   font-size: 13px;
   margin-left: 2px;
   color: black;
   cursor: pointer;
+}
+
+#buttonsContainer{
+  display: flex;
+  margin-top: -0.5px;
+  justify-content: space-evenly;
+  width: 40%;
 }
